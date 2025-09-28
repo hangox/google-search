@@ -35,9 +35,21 @@ A Playwright-based Node.js tool that bypasses search engine anti-scraping mechan
 
 ## Installation
 
+### Install from npm
+
 ```bash
-# Install from source
-git clone https://github.com/web-agent-master/google-search.git
+# Install globally
+npm install -g @hangox/google-search
+# Or using yarn
+yarn global add @hangox/google-search
+# Or using pnpm
+pnpm add -g @hangox/google-search
+```
+
+### Install from source
+
+```bash
+git clone https://github.com/hangox/google-search.git
 cd google-search
 # Install dependencies
 npm install
@@ -82,7 +94,7 @@ google-search "search keywords"
 google-search --limit 5 --timeout 60000 --no-headless "search keywords"
 
 # Or using npx
-npx google-search-cli "search keywords"
+npx @hangox/google-search "search keywords"
 
 # Run in development mode
 pnpm dev "search keywords"

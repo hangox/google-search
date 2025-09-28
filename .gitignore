@@ -36,3 +36,6 @@ src/mcp-server.ts
 .iter_plan.md
 .iter_process.md
 google-search-html/
+
+# 自动生成的文件
+src/version.ts

@@ -33,9 +33,21 @@
 
 ## 安装
 
+### 从 npm 安装
+
 ```bash
-# 从源码安装
-git clone https://github.com/web-agent-master/google-search.git
+# 全局安装
+npm install -g @hangox/google-search
+# 或使用 yarn
+yarn global add @hangox/google-search
+# 或使用 pnpm
+pnpm add -g @hangox/google-search
+```
+
+### 从源码安装
+
+```bash
+git clone https://github.com/hangox/google-search.git
 cd google-search
 # 安装依赖
 npm install
@@ -81,7 +93,7 @@ google-search --limit 5 --timeout 60000 --no-headless "搜索关键词"
 
 
 # 或者使用 npx
-npx google-search-cli "搜索关键词"
+npx @hangox/google-search "搜索关键词"
 
 # 开发模式运行
 pnpm dev "搜索关键词"

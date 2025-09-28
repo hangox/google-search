@@ -3,9 +3,7 @@
 import { Command } from "commander";
 import { googleSearch, getGoogleSearchPageHtml } from "./search.js";
 import { CommandOptions } from "./types.js";
-
-// 获取包信息
-import packageJson from "../package.json" with { type: "json" };
+import { version } from "./version.js";
 
 // 创建命令行程序
 const program = new Command();
@@ -14,7 +12,7 @@ const program = new Command();
 program
   .name("google-search")
   .description("基于 Playwright 的 Google 搜索 CLI 工具")
-  .version(packageJson.version)
+  .version(version)
   .argument("<query>", "搜索关键词")
   .option("-l, --limit <number>", "结果数量限制", parseInt, 10)
   .option("-t, --timeout <number>", "超时时间(毫秒)", parseInt, 30000)
