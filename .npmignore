@@ -1,0 +1,67 @@
+# 源代码（只发布编译后的代码）
+src/
+*.ts
+!dist/**/*.d.ts
+
+# 开发配置
+.github/
+.vscode/
+scripts/
+tsconfig.json
+.eslintrc*
+.prettierrc*
+
+# 文档和示例
+docs/
+examples/
+*.md
+!README.md
+
+# 测试相关
+test/
+tests/
+*.test.js
+*.spec.js
+coverage/
+
+# 版本控制
+.git/
+.gitignore
+.gitattributes
+
+# 包管理器
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# 编辑器配置
+.editorconfig
+.idea/
+*.sublime-*
+*.swp
+*.swo
+*~
+
+# OS 生成的文件
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+logs/
+
+# 临时文件
+tmp/
+temp/
+
+# 浏览器状态文件（不应该被发布）
+browser-state.json
+*-fingerprint.json
+google-search-html/
+
+# 环境变量
+.env*
+
+# 打包的压缩文件
+*.tgz
+*.zip

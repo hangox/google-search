@@ -22,7 +22,12 @@
     "link": "npm link",
     "clean": "node -e \"const fs = require('fs'); const path = require('path'); if (fs.existsSync('dist')) fs.rmSync('dist', { recursive: true, force: true });\"",
     "mcp": "ts-node src/mcp-server.ts",
-    "mcp:build": "npm run build && node dist/mcp-server.js"
+    "mcp:build": "npm run build && node dist/mcp-server.js",
+    "release": "./scripts/release.sh",
+    "release:patch": "./scripts/release.sh patch",
+    "release:minor": "./scripts/release.sh minor",
+    "release:major": "./scripts/release.sh major",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
