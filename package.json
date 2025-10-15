@@ -1,6 +1,6 @@
 {
   "name": "@hangox/google-search",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "基于 Playwright 的 Google 搜索 CLI 工具",
   "type": "module",
   "main": "dist/index.js",
@@ -49,14 +49,16 @@
   "author": "hangox",
   "license": "ISC",
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^22.13.9",
+    "jsdom": "^26.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.2",
-    "jsdom": "^26.0.0"
+    "typescript": "^5.8.2"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
     "commander": "^13.1.0",
+    "crypto-js": "^4.2.0",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",
     "playwright": "^1.50.1",

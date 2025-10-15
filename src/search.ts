@@ -1,10 +1,43 @@
-import { chromium, devices, BrowserContextOptions, Browser } from "playwright";
-import { SearchResponse, SearchResult, CommandOptions, HtmlResponse } from "./types.js";
+import { chromium, devices, BrowserContextOptions, Browser, BrowserContext } from "playwright";
+import { SearchResponse, SearchResult, CommandOptions, HtmlResponse, CookieCloudConfig } from "./types.js";
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
 import logger from "./logger.js";
 import { url } from "inspector";
+import { getCookiesFromCloud, isValidCookieCloudConfig } from "./cookie-cloud.js";
+
+/**
+ * 从CookieCloud注入cookies到浏览器上下文
+ * @param context 浏览器上下文
+ * @param cookieCloudConfig CookieCloud配置
+ * @param targetDomain 目标域名
+ */
+async function injectCookiesFromCloud(
+  context: BrowserContext,
+  cookieCloudConfig?: CookieCloudConfig,
+  targetDomain: string = "google.com"
+): Promise<void> {
+  if (cookieCloudConfig && isValidCookieCloudConfig(cookieCloudConfig)) {
+    try {
+      logger.info("检测到CookieCloud配置，正在从云端获取cookies...");
+      const cloudCookies = await getCookiesFromCloud(
+        cookieCloudConfig,
+        targetDomain
+      );
+
+      if (cloudCookies.length > 0) {
+        await context.addCookies(cloudCookies);
+        logger.info({count: cloudCookies.length}, "成功从CookieCloud注入cookies");
+      } else {
+        logger.warn(`CookieCloud未返回任何${targetDomain}相关的cookies`);
+      }
+    } catch (error) {
+      logger.error({ error }, "从CookieCloud获取cookies失败，将继续使用本地状态");
+      // 不抛出错误，继续执行
+    }
+  }
+}
 
 // 指纹配置接口
 interface FingerprintConfig {
@@ -376,6 +409,9 @@ export async function googleSearch(
       Object.defineProperty(window.screen, "colorDepth", { get: () => 24 });
       Object.defineProperty(window.screen, "pixelDepth", { get: () => 24 });
     });
+
+    // 从CookieCloud注入cookies（如果配置了）
+    await injectCookiesFromCloud(context, options.cookieCloud, "google.com");
 
     try {
       // 使用保存的Google域名或随机选择一个
@@ -1289,6 +1325,9 @@ export async function getGoogleSearchPageHtml(
       Object.defineProperty(window.screen, "colorDepth", { get: () => 24 });
       Object.defineProperty(window.screen, "pixelDepth", { get: () => 24 });
     });
+
+    // 从CookieCloud注入cookies（如果配置了）
+    await injectCookiesFromCloud(context, options.cookieCloud, "google.com");
 
     try {
       // 使用保存的Google域名或随机选择一个

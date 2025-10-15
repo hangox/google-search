@@ -239,6 +239,28 @@ Windows 环境下，也可以使用以下配置方案：
 
 注意：对于第二种方法，你必须将`C:/你的路径/google-search`替换为你实际安装google-search包的完整路径。
 
+#### 可选：CookieCloud 集成
+
+为了减少人机验证触发频率，提高搜索成功率，你可以集成 [CookieCloud](https://github.com/easychen/CookieCloud) 来自动同步和使用浏览器 cookies：
+
+```json
+{
+  "mcpServers": {
+    "google-search": {
+      "command": "npx",
+      "args": ["google-search-mcp"],
+      "env": {
+        "COOKIECLOUD_SERVER": "https://your-server.com",
+        "COOKIECLOUD_UUID": "your-uuid",
+        "COOKIECLOUD_PASSWORD": "your-password"
+      }
+    }
+  }
+}
+```
+
+关于 CookieCloud 集成的更多详情，请参见 [CookieCloud 文档](docs/COOKIECLOUD.md)。
+
 集成后，可在 Claude 中直接使用搜索功能，如"搜索最新的 AI 研究"。
 
 ## 项目结构

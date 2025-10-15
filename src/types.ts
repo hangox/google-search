@@ -16,6 +16,15 @@ export interface SearchResponse {
 }
 
 /**
+ * CookieCloud配置接口
+ */
+export interface CookieCloudConfig {
+  server?: string;      // 服务器地址，如：https://your-server.com
+  uuid?: string;        // 用户KEY·UUID
+  password?: string;    // 端对端加密密码
+}
+
+/**
  * 命令行选项接口
  */
 export interface CommandOptions {
@@ -25,6 +34,7 @@ export interface CommandOptions {
   stateFile?: string;
   noSaveState?: boolean;
   locale?: string; // 搜索结果语言，默认为中文(zh-CN)
+  cookieCloud?: CookieCloudConfig; // CookieCloud配置
 }
 
 /**

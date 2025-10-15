@@ -240,6 +240,28 @@ For Windows environments, you can also use the following configurations:
 
 Note: For the second method, you must replace `C:/path/to/your/google-search` with the actual full path to where you installed the google-search package.
 
+#### Optional: CookieCloud Integration
+
+To reduce CAPTCHA challenges and improve search success rate, you can integrate with [CookieCloud](https://github.com/easychen/CookieCloud) to automatically sync and use your browser cookies:
+
+```json
+{
+  "mcpServers": {
+    "google-search": {
+      "command": "npx",
+      "args": ["google-search-mcp"],
+      "env": {
+        "COOKIECLOUD_SERVER": "https://your-server.com",
+        "COOKIECLOUD_UUID": "your-uuid",
+        "COOKIECLOUD_PASSWORD": "your-password"
+      }
+    }
+  }
+}
+```
+
+For more details about CookieCloud integration, see [CookieCloud Documentation](docs/COOKIECLOUD.md).
+
 After integration, you can directly use search functionality in Claude, such as "search for the latest AI research".
 
 ## Project Structure
